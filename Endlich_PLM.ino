@@ -88,8 +88,8 @@ void loop()
 void SensorCheckLaden() {
   int Sensor = digitalRead(6);
   delay(100);
-  if (Sensor == 1) sendBLE("Success(0)");
-  else sendBLE("Success(1)");
+  if (Sensor == 1) sendBLE("pickupsuccess(0)");
+  else sendBLE("pickupsuccess(1)");
 }
 
 // SensorCheckEntladen
@@ -97,8 +97,8 @@ void SensorCheckLaden() {
 void SensorCheckEntladen() {
   int Sensor = digitalRead(6);
   delay(100);
-  if (Sensor == 1) sendBLE("Success(1)");
-  else sendBLE("Success(0)");
+  if (Sensor == 1) sendBLE("dropsuccess(1)");
+  else sendBLE("dropsuccess(0)");
 }
 
 
@@ -120,6 +120,7 @@ void handleApiCommands(String command) {
 // Listen to incomminc commands from Bluetooth
 void listenBLE() {
   ble.println("AT+BLEUARTRX");
+  ble.println("AT+GAPDEVNAME=TeamDaveLouis");
   ble.readline();
   if (strcmp(ble.buffer, "OK") == 0) {
     // no data
